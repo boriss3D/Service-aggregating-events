@@ -1,0 +1,40 @@
+<style>
+    .b-example-divider {
+        width: 100%;
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+    }
+</style>
+<nav class="navbar navbar-expand-lg bg-body-tertiary" xmlns:sec="http://www.w3.org/1999/xhtml">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/index}">Event Aggregator</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <div class="navbar-nav">
+                <a th:href="@{/api}" type="button" class="btn btn-outline-primary me-2">API</a>
+            </div>
+            <div sec:authorize="hasRole('ORGANIZER')" class="navbar-nav">
+                <a th:href="@{/add-event}" type="button" class="btn btn-outline-primary me-2">Add event</a>
+            </div>
+            <div class="ms-auto">
+                <div sec:authorize="hasRole('USER')" class="navbar-nav">
+                    <form th:action="@{/logout}" method="post">
+<!--                    removed logged as-->
+                    </form>
+                </div>
+                <div sec:authorize="!hasRole('USER')" class="navbar-nav">
+                    <a th:href="@{/login}" type="button" class="btn btn-outline-primary me-2">Log In</a>
+                    <a th:href="@{/register}" type="button" class="btn btn-outline-primary me-2">Register</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="b-example-divider"></div>

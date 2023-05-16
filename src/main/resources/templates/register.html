@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto" xmlns:th="http://www.thymeleaf.org">
+<div th:insert="~{fragments/head.html}"></div>
+<body class="d-flex flex-column min-vh-100">
+<div th:insert="~{fragments/navigation.html}"></div>
+
+<div>
+    <h4 class="mt-5 text-center">Registration</h4>
+</div>
+
+<div th:if="${param.success}">
+    <div class="row">
+        <div class="col"></div>
+        <div class="alert alert-info text-center rounded border col-5">
+            You have successfully registered!
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+<form method="post" role="form" th:action="@{/register/save}" th:object="${userDto}">
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col"></div>
+
+            <div class="rounded border col-5">
+                <div class="mt-3">
+                    <label for="userName" class="form-label">User Name</label>
+                    <input type="text" class="form-control" id="userName" th:field="*{name}">
+                    <p th:errors="*{name}" class="text-danger" th:if="${#fields.hasErrors('name')}"></p>
+                </div>
+                <div class="mt-2">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" th:field="*{email}">
+                    <p th:errors="*{email}" class="text-danger" th:if="${#fields.hasErrors('email')}"></p>
+                </div>
+                <div class="mt-2">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" th:field="*{password}">
+                    <p th:errors="*{password}" class="text-danger" th:if="${#fields.hasErrors('password')}"></p>
+                </div>
+                <div class="mt-2">
+                    <label for="password2" class="form-label">Repeat password</label>
+                    <input type="password" class="form-control" id="password2" th:field="*{password2}">
+                    <p th:errors="*{password2}" class="text-danger" th:if="${#fields.hasErrors('password2')}"></p>
+                </div>
+                <div class="mt-2">
+                    <input class="form-check-input" type="checkbox" id="organizer" th:value="ORGANIZER" th:field="*{role}">
+                    <label class="form-check-label" for="organizer">I am an Organizer</label>
+                </div>
+                <div class="mt-2 mb-3">
+                    <button class="btn btn-outline-success" type="submit">Register</button>
+                </div>
+            </div>
+
+            <div class="col"></div>
+        </div>
+    </div>
+</form>
+
+<div th:insert="~{fragments/color-modes.html}"></div>
+<div th:insert="~{fragments/scripts.html}"></div>
+<div th:insert="~{fragments/footer.html}" class="mt-auto"></div>
+</body>
+</html>
