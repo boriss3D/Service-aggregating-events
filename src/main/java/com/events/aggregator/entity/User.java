@@ -10,6 +10,7 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -40,4 +41,7 @@ public class User implements Serializable {
             joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
             inverseJoinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")})
     private List<Role> roles = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private Set<Event> events;
 }

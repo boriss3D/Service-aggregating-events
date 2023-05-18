@@ -30,15 +30,13 @@ public class SpringSecurity {
         http.csrf().disable()
                 .authorizeHttpRequests((authorize) ->
                         authorize
-                                .requestMatchers("/").permitAll()
-                                .requestMatchers("/index").permitAll()
                                 .requestMatchers("/register/**").permitAll()
                                 .requestMatchers("/add-event/**").hasRole("ORGANIZER")
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")
                                 .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/index")
+                                .defaultSuccessUrl("/login")
                                 .permitAll()
                 ).logout(
                         logout -> logout

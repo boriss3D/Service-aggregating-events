@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
-public class CustomUserDetailsService implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final UserRepository userRepository;
 

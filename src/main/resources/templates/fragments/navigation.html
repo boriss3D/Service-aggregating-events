@@ -26,7 +26,8 @@
             <div class="ms-auto">
                 <div sec:authorize="hasRole('USER')" class="navbar-nav">
                     <form th:action="@{/logout}" method="post">
-<!--                    removed logged as-->
+                        <button class="btn btn-outline-success" type="submit"
+                                th:text="'Logged in as: ' + ${#authentication.getName()}"></button>
                     </form>
                 </div>
                 <div sec:authorize="!hasRole('USER')" class="navbar-nav">
