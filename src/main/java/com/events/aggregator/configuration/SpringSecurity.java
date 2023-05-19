@@ -34,6 +34,7 @@ public class SpringSecurity {
                                 .requestMatchers("/add-event/**").hasRole("ORGANIZER")
                                 .requestMatchers("/").permitAll()
                                 .requestMatchers("/index").permitAll()
+                                .requestMatchers("/event/**").permitAll()
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")

@@ -40,6 +40,11 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    public EventDto findEventById(Long id) {
+        return mapToEventDto(eventRepository.findEventById(id));
+    }
+
+    @Override
     public List<EventDto> findEventsByDateRange(LocalDate start, LocalDate end) {
         List<Event> events = eventRepository.findAll();
         return events.stream()
