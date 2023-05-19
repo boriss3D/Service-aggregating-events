@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto" xmlns:th="http://www.thymeleaf.org">
+<div th:insert="~{fragments/head.html}"></div>
+<body class="d-flex flex-column min-vh-100">
+<div th:insert="~{fragments/navigation.html}"></div>
+
+<div>
+    <h4 class="mt-5 text-center">Current events</h4>
+</div>
+
+<div class="container">
+    <div class="d-flex flex-column flex-md-row align-items-center justify-content-center">
+        <div class="list-group">
+            <div class="card mb-2" th:each="event : ${events}">
+                <div class="card-header">
+                    <a th:href="'/event/' + ${event.id}" th:text="${event.title}" class="nav-link px-2"
+                       aria-current="page"></a>
+                </div>
+                <div class="card-body">
+                    <small class="opacity-50 text-nowrap" th:text="${event.start}">now</small>
+                    <small class="opacity-50 text-nowrap">-</small>
+                    <small class="opacity-50 text-nowrap" th:text="${event.end}">now</small>
+                    <p class="mb-0 opacity-75" th:text="${event.shortDescription}"></p>
+                    <small class="opacity-50 text-nowrap"
+                           th:text="'Organized by ' + ${event.user.getName()}"></small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:insert="~{fragments/color-modes.html}"></div>
+<div th:insert="~{fragments/scripts.html}"></div>
+<div th:insert="~{fragments/footer.html}" class="mt-auto"></div>
+</body>
+</html>

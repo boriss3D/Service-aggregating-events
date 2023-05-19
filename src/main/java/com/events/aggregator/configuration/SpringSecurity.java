@@ -32,11 +32,13 @@ public class SpringSecurity {
                         authorize
                                 .requestMatchers("/register/**").permitAll()
                                 .requestMatchers("/add-event/**").hasRole("ORGANIZER")
+                                .requestMatchers("/").permitAll()
+                                .requestMatchers("/index").permitAll()
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")
                                 .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/login")
+                                .defaultSuccessUrl("/index")
                                 .permitAll()
                 ).logout(
                         logout -> logout
