@@ -27,6 +27,7 @@ public class EventServiceImpl implements EventService {
         event.setDescription(eventDto.getDescription());
         event.setStart(eventDto.getStart());
         event.setEnd(eventDto.getEnd());
+        event.setImageUrl(eventDto.getImageUrl());
 
         User user = userRepository.findUserByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
         event.setUser(user);
@@ -61,6 +62,7 @@ public class EventServiceImpl implements EventService {
         eventDto.setTitle(event.getTitle());
         eventDto.setStart(event.getStart());
         eventDto.setEnd(event.getEnd());
+        eventDto.setImageUrl(event.getImageUrl());
         eventDto.setDescription(event.getDescription());
         if (event.getDescription().length() < 50) {
             eventDto.setShortDescription(event.getDescription() + "...");

@@ -29,5 +29,7 @@ public class EventDto {
     @NotNull(message = "Please set the End date")
     private LocalDate end;
 
+    private String imageUrl;
+
     private User user;
 }

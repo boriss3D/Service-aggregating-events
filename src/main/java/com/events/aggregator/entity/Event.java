@@ -34,6 +34,9 @@ public class Event implements Serializable {
     @Column(nullable = false)
     private LocalDate end;
 
+    @Column(name = "image-url")
+    private String imageUrl;
+
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name="user_events",

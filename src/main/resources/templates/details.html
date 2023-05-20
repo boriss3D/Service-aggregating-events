@@ -9,6 +9,9 @@
         <div class="col-9">
             <div class="card-header mb-2">
                 <h5 class="card-title mb-2" th:text="${eventDto.title}"></h5>
+                <div th:unless="${eventDto.imageUrl.length()} == 0">
+                    <img th:src="${eventDto.imageUrl}" src="" height="300px" alt=""/>
+                </div>
             </div>
             <div class="card-body">
                 <small class="opacity-50 text-nowrap" th:text="${eventDto.start}">now</small>
