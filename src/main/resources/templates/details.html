@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-bs-theme="auto" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" data-bs-theme="auto" xmlns:th="http://www.thymeleaf.org">
 <div th:insert="~{fragments/head.html}"></div>
 <body class="d-flex flex-column min-vh-100">
 <div th:insert="~{fragments/navigation.html}"></div>
@@ -20,9 +20,17 @@
                 <p class="mb-0 opacity-75" th:text="${eventDto.description}"></p>
                 <small class="opacity-50 text-nowrap"
                        th:text="'Organized by ' + ${eventDto.user.getName()}"></small>
-            </div>
-            <div class="container mt-2" sec:authorize="hasRole('USER')">
-
+                <div class="d-flex">
+                    <div th:if="${eventDto.user.getEmail()} == ${#authentication.getName()}">
+                        <a th:href="'/event/' + ${eventDto.id} + '/edit'" type="button"
+                           class="btn btn-outline-success me-2">Update</a>
+                    </div>
+                    <div class="ml-2" th:if="${eventDto.user.getEmail()} == ${#authentication.getName()}">
+                        <form method="post" th:action="'/event/' + ${eventDto.id} + '/delete'">
+                            <button type="submit" class="btn btn-outline-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-md-auto">

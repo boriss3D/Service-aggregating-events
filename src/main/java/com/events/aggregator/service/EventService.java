@@ -16,4 +16,8 @@ public interface EventService {
     List<EventDto> findEventsByDateRange(LocalDate start, LocalDate end);
 
     List<EventDto> findEventsByTitle(String keyword);
+
+    void updateEvent(EventDto existingEvent);
+
+    void deleteEventById(Long id);
 }

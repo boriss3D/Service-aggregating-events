@@ -66,6 +66,21 @@ public class EventServiceImpl implements EventService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public void updateEvent(EventDto existingEvent) {
+        Event event = eventRepository.findEventById(existingEvent.getId());
+        event.setDescription(existingEvent.getDescription());
+        event.setStart(existingEvent.getStart());
+        event.setEnd(existingEvent.getEnd());
+        event.setImageUrl(existingEvent.getImageUrl());
+        eventRepository.save(event);
+    }
+
+    @Override
+    public void deleteEventById(Long id) {
+        eventRepository.deleteById(id);
+    }
+
     private EventDto mapToEventDto(Event event) {
         EventDto eventDto = new EventDto();
         eventDto.setId(event.getId());

@@ -37,7 +37,7 @@ public class Event implements Serializable {
     @Column(name = "image-url")
     private String imageUrl;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinTable(
             name="user_events",
             joinColumns={@JoinColumn(name="EVENT_ID", referencedColumnName="ID")},
