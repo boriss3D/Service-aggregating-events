@@ -1,5 +1,6 @@
 package com.events.aggregator.controller;
 
+import com.events.aggregator.dto.SearchDto;
 import com.events.aggregator.service.EventService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,8 @@ public class IndexController {
 
     @GetMapping({"/", "/index"})
     public String getHomePage(Model model) {
-        model.addAttribute("events", eventService.findEventsByDateRange(LocalDate.now(), LocalDate.now()));
+        model.addAttribute("eventsDto", eventService.findEventsByDateRange(LocalDate.now(), LocalDate.now()));
+        model.addAttribute("search", new SearchDto());
         return "index";
     }
 }

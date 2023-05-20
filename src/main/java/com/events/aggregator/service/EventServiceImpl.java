@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
@@ -54,6 +55,15 @@ public class EventServiceImpl implements EventService {
                 .filter(eventDto -> eventDto.getEnd().isAfter(end) || eventDto.getEnd().isEqual(end))
                 .sorted(Comparator.comparing(EventDto::getStart))
                 .toList();
+    }
+
+    @Override
+    public List<EventDto> findEventsByTitle(String keyword) {
+        List<Event> events = eventRepository.findAll();
+        return events.stream()
+                .filter(event -> event.getTitle().toLowerCase().contains(keyword.toLowerCase()))
+                .map(this::mapToEventDto)
+                .collect(Collectors.toList());
     }
 
     private EventDto mapToEventDto(Event event) {
