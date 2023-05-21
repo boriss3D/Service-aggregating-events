@@ -23,7 +23,7 @@ public class Event implements Serializable {
     @Column(nullable = false, updatable = false)
     private Long id;
 
-    @Column(nullable=false, unique = true)
+    @Column(nullable = false, unique = true)
     private String title;
 
     @Column(nullable = false, length = 5000, columnDefinition = "Text")
@@ -40,9 +40,9 @@ public class Event implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinTable(
-            name="user_events",
-            joinColumns={@JoinColumn(name="EVENT_ID", referencedColumnName="ID")},
-            inverseJoinColumns={@JoinColumn(name="USER_ID", referencedColumnName="ID")})
+            name = "user_events",
+            joinColumns = {@JoinColumn(name = "EVENT_ID", referencedColumnName = "ID")},
+            inverseJoinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")})
     private User user;
 
     @OneToMany(mappedBy = "event")

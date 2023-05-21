@@ -5,5 +5,6 @@ import com.events.aggregator.entity.User;
 
 public interface UserService {
     void addUser(UserDto userDto);
+
     User findUserByEmail(String email);
 }

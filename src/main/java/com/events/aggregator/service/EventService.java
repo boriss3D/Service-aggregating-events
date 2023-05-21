@@ -13,11 +13,15 @@ public interface EventService {
 
     EventDto findEventById(Long id);
 
-    List<EventDto> findEventsByDateRange(LocalDate start, LocalDate end);
+    List<EventDto> findCurrentEventsByDateRange(LocalDate start, LocalDate end);
 
     List<EventDto> findEventsByTitle(String keyword);
 
     void updateEvent(EventDto existingEvent);
 
     void deleteEventById(Long id);
+
+    List<EventDto> findAllFutureEvents();
+
+    List<EventDto> findAllFilteredEvents(String start, String end);
 }

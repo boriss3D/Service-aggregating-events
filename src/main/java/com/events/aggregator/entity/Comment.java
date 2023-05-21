@@ -22,13 +22,13 @@ public class Comment implements Serializable {
     @Column(nullable = false, updatable = false)
     private Long id;
 
-    @Column(length = 500, columnDefinition = "Text", nullable=false)
+    @Column(length = 500, columnDefinition = "Text", nullable = false)
     private String comment;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     private LocalDateTime commentPostTime;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinTable(
             name = "event_comments",
             joinColumns = {@JoinColumn(name = "COMMENT_ID", referencedColumnName = "ID")},

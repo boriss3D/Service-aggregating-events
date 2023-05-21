@@ -44,7 +44,8 @@
                     <p th:errors="*{password2}" class="text-danger" th:if="${#fields.hasErrors('password2')}"></p>
                 </div>
                 <div class="mt-2">
-                    <input class="form-check-input" type="checkbox" id="organizer" th:value="ORGANIZER" th:field="*{role}">
+                    <input class="form-check-input" type="checkbox" id="organizer" th:value="ORGANIZER"
+                           th:field="*{role}">
                     <label class="form-check-label" for="organizer">I am an Organizer</label>
                 </div>
                 <div class="mt-2 mb-3">

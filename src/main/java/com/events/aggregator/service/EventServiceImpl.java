@@ -47,7 +47,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<EventDto> findEventsByDateRange(LocalDate start, LocalDate end) {
+    public List<EventDto> findCurrentEventsByDateRange(LocalDate start, LocalDate end) {
         List<Event> events = eventRepository.findAll();
         return events.stream()
                 .map(this::mapToEventDto)
@@ -79,6 +79,28 @@ public class EventServiceImpl implements EventService {
     @Override
     public void deleteEventById(Long id) {
         eventRepository.deleteById(id);
+    }
+
+    @Override
+    public List<EventDto> findAllFutureEvents() {
+        List<Event> events = eventRepository.findAll();
+        return events.stream()
+                .map(this::mapToEventDto)
+                .filter(eventDto -> eventDto.getStart().isAfter(LocalDate.now()))
+                .filter(eventDto -> eventDto.getEnd().isAfter(LocalDate.now()))
+                .sorted(Comparator.comparing(EventDto::getStart))
+                .toList();
+    }
+
+    @Override
+    public List<EventDto> findAllFilteredEvents(String start, String end) {
+        List<Event> events = eventRepository.findAll();
+        return events.stream()
+                .map(this::mapToEventDto)
+                .filter(eventDto -> eventDto.getStart().isAfter(LocalDate.parse(start)) || eventDto.getStart().isEqual(LocalDate.parse(start)))
+                .filter(eventDto -> eventDto.getEnd().isBefore(LocalDate.parse(end)) || eventDto.getEnd().isEqual(LocalDate.parse(end)))
+                .sorted(Comparator.comparing(EventDto::getStart))
+                .toList();
     }
 
     private EventDto mapToEventDto(Event event) {
