@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-bs-theme="auto" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" data-bs-theme="auto" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <div th:insert="~{fragments/head.html}"></div>
 <body class="d-flex flex-column min-vh-100">
 <div th:insert="~{fragments/navigation.html}"></div>
@@ -35,6 +35,37 @@
         </div>
         <div class="col-md-auto">
         </div>
+    </div>
+</div>
+
+<div class="container mt-2" sec:authorize="hasRole('USER')">
+    <div class="row">
+        <div class="col-6">
+            <form method="post" role="form">
+                <div class="mb-3">
+                    <label for="commentContent" class="form-label"></label>
+                    <textarea class="form-control" id="commentContent" rows="3"
+                              th:field="${commentDto.commentContent}"></textarea>
+                    <p class="text-danger" th:errors="${commentDto.commentContent}"></p>
+                </div>
+                <button type="submit" class="btn btn-outline-success float-end" name="comment">Add Comment</button>
+            </form>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-6">
+            <p class="fw-bold text-center">Comments</p>
+            <div class="card md-auto mb-1" th:each="comment : ${comments}">
+                <div class="card-body">
+                    <p class="mb-0 opacity-75" th:text="${comment}"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col"></div>
     </div>
 </div>
 

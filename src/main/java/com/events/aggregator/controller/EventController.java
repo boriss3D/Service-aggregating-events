@@ -1,6 +1,8 @@
 package com.events.aggregator.controller;
 
+import com.events.aggregator.dto.CommentDto;
 import com.events.aggregator.dto.EventDto;
+import com.events.aggregator.service.CommentService;
 import com.events.aggregator.service.EventService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -8,7 +10,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @AllArgsConstructor
 @RequestMapping("/event")
@@ -16,10 +21,12 @@ import org.springframework.web.bind.annotation.*;
 public class EventController {
 
     private final EventService eventService;
+    private final CommentService commentService;
 
     @GetMapping("/{id}")
     public String ShowEventDetails(@PathVariable(value = "id") Long id, Model model) {
         collectDetails(id, model);
+        model.addAttribute(new CommentDto());
         return "details";
     }
 
@@ -61,8 +68,26 @@ public class EventController {
         return "redirect:/index";
     }
 
+    @PostMapping(value = "/{id}", params = "comment")
+    public String registration(@PathVariable(value = "id") Long id, @ModelAttribute @Valid CommentDto commentDto,
+                               Errors errors, Model model) {
+
+        if (errors.hasErrors()) {
+            collectDetails(id, model);
+            model.addAttribute(commentDto);
+            return "details";
+        }
+
+        commentDto.setEventId(id);
+        commentService.addComment(commentDto);
+        return "redirect:/event/" + id;
+    }
+
+
     private void collectDetails(Long id, Model model) {
         EventDto eventDto = eventService.findEventById(id);
         model.addAttribute("eventDto", eventDto);
+        List<String> eventComments = commentService.getCommentsForEvent(eventDto);
+        model.addAttribute("comments", eventComments);
     }
 }

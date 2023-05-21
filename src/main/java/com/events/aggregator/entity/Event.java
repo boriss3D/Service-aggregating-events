@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -43,4 +44,7 @@ public class Event implements Serializable {
             joinColumns={@JoinColumn(name="EVENT_ID", referencedColumnName="ID")},
             inverseJoinColumns={@JoinColumn(name="USER_ID", referencedColumnName="ID")})
     private User user;
+
+    @OneToMany(mappedBy = "event")
+    private Set<Comment> comments;
 }
