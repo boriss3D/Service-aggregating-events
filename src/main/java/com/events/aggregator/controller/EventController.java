@@ -2,8 +2,11 @@ package com.events.aggregator.controller;
 
 import com.events.aggregator.dto.CommentDto;
 import com.events.aggregator.dto.EventDto;
+import com.events.aggregator.dto.SignupDto;
+import com.events.aggregator.entity.Signup;
 import com.events.aggregator.service.CommentService;
 import com.events.aggregator.service.EventService;
+import com.events.aggregator.service.SignupService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,11 +25,13 @@ public class EventController {
 
     private final EventService eventService;
     private final CommentService commentService;
+    private final SignupService signupService;
 
     @GetMapping("/{id}")
     public String ShowEventDetails(@PathVariable(value = "id") Long id, Model model) {
         collectDetails(id, model);
         model.addAttribute(new CommentDto());
+        model.addAttribute("signupDto", new SignupDto());
         return "details";
     }
 
@@ -83,11 +88,28 @@ public class EventController {
         return "redirect:/event/" + id;
     }
 
+    @PostMapping(value = "/{id}", params = "signup")
+    public String signup(@PathVariable(value = "id") Long id, SignupDto signupDto) {
+
+        signupDto.setEventId(id);
+        signupService.addSignup(signupDto);
+
+        return "redirect:/event/" + id;
+    }
+
 
     private void collectDetails(Long id, Model model) {
         EventDto eventDto = eventService.findEventById(id);
         model.addAttribute("eventDto", eventDto);
+
         List<String> eventComments = commentService.getCommentsForEvent(eventDto);
         model.addAttribute("comments", eventComments);
+
+        List<Signup> signups = signupService.findSignupsForEvent(id);
+        model.addAttribute("signupUsers", signups);
+
+        boolean isJoined = signups.stream()
+                .anyMatch(signup -> SecurityContextHolder.getContext().getAuthentication().getName().equals(signup.getUserEmail()));
+        model.addAttribute("isJoined", isJoined);
     }
 }

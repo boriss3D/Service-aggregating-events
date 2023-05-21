@@ -30,10 +30,27 @@
                             <button type="submit" class="btn btn-outline-danger">Delete</button>
                         </form>
                     </div>
+                    <div class="container ml-2" sec:authorize="hasRole('USER')">
+                        <form method="post" role="form" th:object="${signupDto}">
+                            <button th:unless="true == ${isJoined}" type="submit"
+                                    class="btn btn-outline-success float-end"
+                                    name="signup">Sign up
+                            </button>
+                        </form>
+                        <button th:if="true == ${isJoined}" class="btn btn-outline-success float-end" disabled>Already
+                            joined
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-md-auto">
+            <p class="fw-bold text-center">Already joined</p>
+            <div class="card md-auto mb-1" th:each="user : ${signupUsers}">
+                <div class="card-body">
+                    <p class="mb-0 opacity-75 text-center" th:text="${user.getUserEmail()}"></p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

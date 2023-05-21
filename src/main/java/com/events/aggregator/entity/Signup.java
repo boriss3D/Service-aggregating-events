@@ -1,0 +1,27 @@
+package com.events.aggregator.entity;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.io.Serializable;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@IdClass(Signup.class)
+@Table(name = "signups")
+public class Signup implements Serializable {
+
+    @Id
+    @Column(nullable = false)
+    private Long eventId;
+
+    @Id
+    @Column(nullable = false)
+    private String userEmail;
+}
