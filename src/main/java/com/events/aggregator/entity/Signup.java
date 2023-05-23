@@ -1,12 +1,10 @@
 package com.events.aggregator.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
+
 
 @Getter
 @Setter
@@ -24,4 +22,14 @@ public class Signup implements Serializable {
     @Id
     @Column(nullable = false)
     private String userEmail;
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 }
