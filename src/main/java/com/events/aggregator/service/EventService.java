@@ -24,4 +24,10 @@ public interface EventService {
     List<EventDto> findAllFutureEvents();
 
     List<EventDto> findAllFilteredEvents(String start, String end);
+
+    List<EventDto> findAllMyEvents();
+
+    List<EventDto> findAllMyRegisteredEvents();
+
+    void leaveEventById(Long id);
 }

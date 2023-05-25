@@ -2,24 +2,30 @@ package com.events.aggregator.service;
 
 import com.events.aggregator.dto.EventDto;
 import com.events.aggregator.entity.Event;
+import com.events.aggregator.entity.Signup;
 import com.events.aggregator.entity.User;
 import com.events.aggregator.repository.EventRepository;
+import com.events.aggregator.repository.SignupRepository;
 import com.events.aggregator.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
+@Transactional
 public class EventServiceImpl implements EventService {
 
     private final EventRepository eventRepository;
     private final UserRepository userRepository;
+    private final SignupRepository signupRepository;
 
     @Override
     public void addEvent(EventDto eventDto) {
@@ -101,6 +107,41 @@ public class EventServiceImpl implements EventService {
                 .filter(eventDto -> eventDto.getEnd().isBefore(LocalDate.parse(end)) || eventDto.getEnd().isEqual(LocalDate.parse(end)))
                 .sorted(Comparator.comparing(EventDto::getStart))
                 .toList();
+    }
+
+    @Override
+    public List<EventDto> findAllMyEvents() {
+        User user = userRepository.findUserByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+        List<Event> events = eventRepository.findAll();
+        return events.stream()
+                .map(this::mapToEventDto)
+                .filter(eventDto -> eventDto.getUser().getEmail().equals(user.getEmail()))
+                .toList();
+    }
+
+    @Override
+    public List<EventDto> findAllMyRegisteredEvents() {
+        User user = userRepository.findUserByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+        List<Signup> signups = signupRepository.findAll();
+        List<Long> eventsId = signups.stream()
+                .filter(signup -> signup.getUserEmail().equals(user.getEmail()))
+                .map(Signup::getEventId)
+                .toList();
+
+        List<Event> events = new ArrayList<>();
+
+        for (Long id : eventsId) {
+            events.add(eventRepository.findEventById(id));
+        }
+
+        return events.stream()
+                .map(this::mapToEventDto)
+                .toList();
+    }
+
+    @Override
+    public void leaveEventById(Long id) {
+        signupRepository.deleteByEventId(id);
     }
 
     private EventDto mapToEventDto(Event event) {

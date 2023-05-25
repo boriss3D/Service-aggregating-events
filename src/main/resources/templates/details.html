@@ -26,9 +26,30 @@
                            class="btn btn-outline-success me-2">Update</a>
                     </div>
                     <div class="ml-2" th:if="${eventDto.user.getEmail()} == ${#authentication.getName()}">
-                        <form method="post" th:action="'/event/' + ${eventDto.id} + '/delete'">
-                            <button type="submit" class="btn btn-outline-danger">Delete</button>
-                        </form>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Delete
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <form method="post" th:action="'/event/' + ${eventDto.id} + '/delete'">
+                                            <button type="submit" class="btn btn-outline-danger">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="container ml-2" sec:authorize="hasRole('USER')">
                         <form method="post" role="form" th:object="${signupDto}">

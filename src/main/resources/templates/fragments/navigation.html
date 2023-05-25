@@ -16,12 +16,14 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
             <div class="navbar-nav">
                 <a th:href="@{/api}" type="button" class="btn btn-outline-primary me-2">API</a>
             </div>
             <div sec:authorize="hasRole('ORGANIZER')" class="navbar-nav">
                 <a th:href="@{/add-event}" type="button" class="btn btn-outline-primary me-2">Add event</a>
+            </div>
+            <div sec:authorize="hasRole('USER')" class="navbar-nav">
+                <a th:href="@{/my-events}" type="button" class="btn btn-outline-primary me-2">My events</a>
             </div>
             <div class="ms-auto">
                 <div sec:authorize="hasRole('USER')" class="navbar-nav">

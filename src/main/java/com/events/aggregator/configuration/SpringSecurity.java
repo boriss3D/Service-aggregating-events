@@ -30,13 +30,14 @@ public class SpringSecurity {
         http.csrf().disable()
                 .authorizeHttpRequests((authorize) ->
                         authorize
-                                .requestMatchers("/register/**").permitAll()
-                                .requestMatchers("/add-event/**").hasRole("ORGANIZER")
                                 .requestMatchers("/").permitAll()
                                 .requestMatchers("/index").permitAll()
+                                .requestMatchers("/register/**").permitAll()
                                 .requestMatchers("/event/**").permitAll()
                                 .requestMatchers("/search").permitAll()
                                 .requestMatchers("/api/**").permitAll()
+                                .requestMatchers("/add-event/**").hasRole("ORGANIZER")
+                                .requestMatchers("/my-events/**").hasRole("USER")
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")
