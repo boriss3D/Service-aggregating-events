@@ -38,12 +38,12 @@
                 </div>
                 <div class="mt-2">
                     <label for="start" class="form-label">Start</label>
-                    <input type="date" class="form-control" id="start" th:field="*{start}">
+                    <input type="date" class="form-control" id="start" th:field="*{start}" required>
                     <p th:errors="*{start}" class="text-danger" th:if="${#fields.hasErrors('start')}"></p>
                 </div>
                 <div class="mt-2">
                     <label for="end" class="form-label">End</label>
-                    <input type="date" class="form-control" id="end" th:field="*{end}">
+                    <input type="date" class="form-control" id="end" th:field="*{end}" required>
                     <p th:errors="*{end}" class="text-danger" th:if="${#fields.hasErrors('end')}"></p>
                 </div>
                 <div class="mt-2">

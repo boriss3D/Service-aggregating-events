@@ -47,6 +47,7 @@ public class AddEventController {
             model.addAttribute("eventDto", eventDto);
             return "add-event";
         }
+
         eventService.addEvent(eventDto);
         return "redirect:/add-event?success";
     }

@@ -52,6 +52,11 @@ public class EventController {
                     "You are not owner of this event");
         }
 
+        if (eventDto.getStart().isAfter(eventDto.getEnd())) {
+            result.rejectValue("start", "bad date",
+                    "Start date is after the end date");
+        }
+
         if (result.hasErrors()) {
             model.addAttribute("eventDto", eventDto);
             return "edit";

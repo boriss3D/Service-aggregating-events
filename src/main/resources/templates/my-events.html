@@ -29,37 +29,13 @@
                     <td th:text="${eventDto.title}"></td>
                     <td th:text="${eventDto.start}"></td>
                     <td th:text="${eventDto.end}"></td>
-                    <td class="ml-2" th:if="${eventDto.user.getEmail()} == ${#authentication.getName()}">
+                    <td class="d-flex ml-2" th:if="${eventDto.user.getEmail()} == ${#authentication.getName()}">
                         <a th:href="'/event/' + ${eventDto.id} + '/edit'" type="button"
                            class="btn btn-outline-success me-2">Update</a>
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
-                                data-bs-target="#delete">
-                            Delete
-                        </button>
-                        <!-- Modal -->
-                        <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel"
-                             aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="deleteModalLabel"></h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        Are you sure?
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
-                                        </button>
-                                        <form method="post" th:action="'/event/' + ${eventDto.id} + '/delete'">
-                                            <button type="submit" class="btn btn-outline-danger">Delete</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <form method="post" th:action="'/event/' + ${eventDto.id} + '/delete'">
+                            <button type="submit" class="btn btn-outline-danger">Delete</button>
+                        </form>
                     </td>
                 </tr>
                 </tbody>
@@ -85,33 +61,9 @@
                 <tr th:each="eventDto : ${mySigns}">
                     <td th:text="${eventDto.title}"></td>
                     <td>
-                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
-                                data-bs-target="#unsigned">
-                            UnSign
-                        </button>
-                        <!-- Modal -->
-                        <div class="modal fade" id="unsigned" tabindex="-1" aria-labelledby="exampleModalLabel"
-                             aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="unsignedModalLabel"></h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        Are you sure?
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
-                                        </button>
-                                        <form method="post" th:action="'/my-events/' + ${eventDto.id} + '/delete'">
-                                            <button type="submit" class="btn btn-outline-danger">UnSign</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <form method="post" th:action="'/my-events/' + ${eventDto.id} + '/delete'">
+                            <button type="submit" class="btn btn-outline-danger">UnSign</button>
+                        </form>
                     </td>
                 </tr>
                 </tbody>

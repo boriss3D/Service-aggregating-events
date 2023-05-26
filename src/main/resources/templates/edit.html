@@ -38,10 +38,12 @@
                         <label for="start" class="form-label">Start</label>
                         <input name="start" type="date" class="form-control" id="start" th:value="${eventDto.start}"
                                required>
+                        <p th:errors="${eventDto.start}" class="text-danger" th:if="${#fields.hasErrors('eventDto.start')}"></p>
                     </div>
                     <div class="mt-2">
                         <label for="end" class="form-label">End</label>
-                        <input name="end" type="date" class="form-control" id="end" th:value="${eventDto.end}">
+                        <input name="end" type="date" class="form-control" id="end" th:value="${eventDto.end}"
+                               required>
                     </div>
                     <div class="mt-2">
                         <label for="link" class="form-label">Event picture url</label>
