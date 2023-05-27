@@ -18,6 +18,7 @@ import java.util.List;
 public class MyEventsController {
 
     private final EventService eventService;
+
     @GetMapping("")
 
     public String showMyEvents(Model model) {
