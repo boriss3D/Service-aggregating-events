@@ -11,30 +11,30 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary" xmlns:sec="http://www.w3.org/1999/xhtml">
     <div class="container-fluid">
         <a class="navbar-brand" th:href="@{/index}">Event Aggregator</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+                data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="navbar-nav">
-                <a th:href="@{/api}" type="button" class="btn btn-outline-primary me-2">API</a>
+                <a class="btn btn-outline-primary me-2" th:href="@{/api}" type="button">API</a>
             </div>
-            <div sec:authorize="hasRole('ORGANIZER')" class="navbar-nav">
-                <a th:href="@{/add-event}" type="button" class="btn btn-outline-primary me-2">Add event</a>
+            <div class="navbar-nav" sec:authorize="hasRole('ORGANIZER')">
+                <a class="btn btn-outline-primary me-2" th:href="@{/add-event}" type="button">Add event</a>
             </div>
-            <div sec:authorize="hasRole('USER')" class="navbar-nav">
-                <a th:href="@{/my-events}" type="button" class="btn btn-outline-primary me-2">My events</a>
+            <div class="navbar-nav" sec:authorize="hasRole('USER')">
+                <a class="btn btn-outline-primary me-2" th:href="@{/my-events}" type="button">My events</a>
             </div>
             <div class="ms-auto">
-                <div sec:authorize="hasRole('USER')" class="navbar-nav">
-                    <form th:action="@{/logout}" method="post">
-                        <button class="btn btn-outline-success" type="submit"
-                                th:text="'Logged in as: ' + ${#authentication.getName()}"></button>
+                <div class="navbar-nav" sec:authorize="hasRole('USER')">
+                    <form method="post" th:action="@{/logout}">
+                        <button class="btn btn-outline-success" th:text="'Logged in as: ' + ${#authentication.getName()}"
+                                type="submit"></button>
                     </form>
                 </div>
-                <div sec:authorize="!hasRole('USER')" class="navbar-nav">
-                    <a th:href="@{/login}" type="button" class="btn btn-outline-primary me-2">Log In</a>
-                    <a th:href="@{/register}" type="button" class="btn btn-outline-primary me-2">Register</a>
+                <div class="navbar-nav" sec:authorize="!hasRole('USER')">
+                    <a class="btn btn-outline-primary me-2" th:href="@{/login}" type="button">Log In</a>
+                    <a class="btn btn-outline-primary me-2" th:href="@{/register}" type="button">Register</a>
                 </div>
             </div>
         </div>

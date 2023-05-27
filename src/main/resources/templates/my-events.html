@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-bs-theme="auto" xmlns:th="http://www.thymeleaf.org">
+<html data-bs-theme="auto" lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:insert="~{fragments/head.html}"></div>
 <body class="d-flex flex-column min-vh-100">
 <div th:insert="~{fragments/navigation.html}"></div>
@@ -11,11 +11,11 @@
                 <h4 class="mt-5 text-center">My Events</h4>
             </div>
             <table
-                    id="table"
-                    data-toggle="table"
+                    data-search="true"
                     data-sort-class="table-active"
                     data-sortable="true"
-                    data-search="true">
+                    data-toggle="table"
+                    id="table">
                 <thead>
                 <tr>
                     <th data-field="title" data-sortable="true">Title</th>
@@ -30,11 +30,11 @@
                     <td th:text="${eventDto.start}"></td>
                     <td th:text="${eventDto.end}"></td>
                     <td class="d-flex ml-2" th:if="${eventDto.user.getEmail()} == ${#authentication.getName()}">
-                        <a th:href="'/event/' + ${eventDto.id} + '/edit'" type="button"
-                           class="btn btn-outline-success me-2">Update</a>
+                        <a class="btn btn-outline-success me-2" th:href="'/event/' + ${eventDto.id} + '/edit'"
+                           type="button">Update</a>
                         <!-- Button trigger modal -->
                         <form method="post" th:action="'/event/' + ${eventDto.id} + '/delete'">
-                            <button type="submit" class="btn btn-outline-danger">Delete</button>
+                            <button class="btn btn-outline-danger" type="submit">Delete</button>
                         </form>
                     </td>
                 </tr>
@@ -46,11 +46,11 @@
                 <h4 class="mt-5 text-center">My subscriptions</h4>
             </div>
             <table
-                    id="table2"
-                    data-toggle="table"
+                    data-search="true"
                     data-sort-class="table-active"
                     data-sortable="true"
-                    data-search="true">
+                    data-toggle="table"
+                    id="table2">
                 <thead>
                 <tr>
                     <th data-field="title" data-sortable="true">Title</th>
@@ -62,7 +62,7 @@
                     <td th:text="${eventDto.title}"></td>
                     <td>
                         <form method="post" th:action="'/my-events/' + ${eventDto.id} + '/delete'">
-                            <button type="submit" class="btn btn-outline-danger">UnSign</button>
+                            <button class="btn btn-outline-danger" type="submit">UnSign</button>
                         </form>
                     </td>
                 </tr>
@@ -74,6 +74,6 @@
 
 <div th:insert="~{fragments/color-modes.html}"></div>
 <div th:insert="~{fragments/scripts.html}"></div>
-<div th:insert="~{fragments/footer.html}" class="mt-auto"></div>
+<div class="mt-auto" th:insert="~{fragments/footer.html}"></div>
 </body>
 </html>

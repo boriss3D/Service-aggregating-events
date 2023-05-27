@@ -140,8 +140,8 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public void leaveEventById(Long id) {
-        signupRepository.deleteByEventId(id);
+    public void leaveEventByUserEmailAndEventId(String email, Long id) {
+        signupRepository.deleteByUserEmailAndEventId(email, id);
     }
 
     private EventDto mapToEventDto(Event event) {

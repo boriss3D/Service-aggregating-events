@@ -29,5 +29,5 @@ public interface EventService {
 
     List<EventDto> findAllMyRegisteredEvents();
 
-    void leaveEventById(Long id);
+    void leaveEventByUserEmailAndEventId(String email, Long id);
 }

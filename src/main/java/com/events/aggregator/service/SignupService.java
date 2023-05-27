@@ -9,4 +9,6 @@ public interface SignupService {
     void addSignup(SignupDto signupDto);
 
     List<Signup> findSignupsForEvent(Long eventId);
+
+    void deleteAllSignupByEventId(Long id);
 }

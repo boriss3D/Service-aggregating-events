@@ -31,4 +31,9 @@ public class SignupServiceImpl implements SignupService {
                 .filter(signup -> Objects.equals(signup.getEventId(), eventId))
                 .toList();
     }
+
+    @Override
+    public void deleteAllSignupByEventId(Long id) {
+        signupRepository.deleteAllByEventId(id);
+    }
 }

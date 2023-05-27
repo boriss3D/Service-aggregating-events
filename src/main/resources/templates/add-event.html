@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-bs-theme="auto" xmlns:th="http://www.thymeleaf.org">
+<html data-bs-theme="auto" lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:insert="~{fragments/head.html}"></div>
 <body class="d-flex flex-column min-vh-100">
 <div th:insert="~{fragments/navigation.html}"></div>
@@ -25,30 +25,30 @@
 
             <div class="rounded border col-5">
                 <div class="mt-3">
-                    <label for="title" class="form-label">Event title</label>
-                    <input type="text" class="form-control" id="title" th:field="*{title}">
-                    <p th:errors="*{title}" class="text-danger" th:if="${#fields.hasErrors('title')}"></p>
+                    <label class="form-label" for="title">Event title</label>
+                    <input class="form-control" id="title" th:field="*{title}" type="text">
+                    <p class="text-danger" th:errors="*{title}" th:if="${#fields.hasErrors('title')}"></p>
                 </div>
                 <div class="mt-2">
-                    <label for="description" class="form-label">Description</label>
-                    <textarea class="form-control" id="description" rows="7"
-                              style="height:100%" placeholder="Enter description"
+                    <label class="form-label" for="description">Description</label>
+                    <textarea class="form-control" id="description" placeholder="Enter description"
+                              rows="7" style="height:100%"
                               th:field="*{description}"></textarea>
-                    <p th:errors="*{description}" class="text-danger" th:if="${#fields.hasErrors('description')}"></p>
+                    <p class="text-danger" th:errors="*{description}" th:if="${#fields.hasErrors('description')}"></p>
                 </div>
                 <div class="mt-2">
-                    <label for="start" class="form-label">Start</label>
-                    <input type="date" class="form-control" id="start" th:field="*{start}" required>
-                    <p th:errors="*{start}" class="text-danger" th:if="${#fields.hasErrors('start')}"></p>
+                    <label class="form-label" for="start">Start</label>
+                    <input class="form-control" id="start" required th:field="*{start}" type="date">
+                    <p class="text-danger" th:errors="*{start}" th:if="${#fields.hasErrors('start')}"></p>
                 </div>
                 <div class="mt-2">
-                    <label for="end" class="form-label">End</label>
-                    <input type="date" class="form-control" id="end" th:field="*{end}" required>
-                    <p th:errors="*{end}" class="text-danger" th:if="${#fields.hasErrors('end')}"></p>
+                    <label class="form-label" for="end">End</label>
+                    <input class="form-control" id="end" required th:field="*{end}" type="date">
+                    <p class="text-danger" th:errors="*{end}" th:if="${#fields.hasErrors('end')}"></p>
                 </div>
                 <div class="mt-2">
-                    <label for="link" class="form-label">Event picture url</label>
-                    <input class="form-control" type="text" id="link" name="link" th:field="*{imageUrl}">
+                    <label class="form-label" for="link">Event picture url</label>
+                    <input class="form-control" id="link" name="link" th:field="*{imageUrl}" type="text">
                 </div>
                 <div class="mt-2 mb-3">
                     <button class="btn btn-outline-success" type="submit" value="Upload">Add Event</button>
@@ -62,6 +62,6 @@
 
 <div th:insert="~{fragments/color-modes.html}"></div>
 <div th:insert="~{fragments/scripts.html}"></div>
-<div th:insert="~{fragments/footer.html}" class="mt-auto"></div>
+<div class="mt-auto" th:insert="~{fragments/footer.html}"></div>
 </body>
 </html>

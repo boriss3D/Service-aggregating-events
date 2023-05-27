@@ -74,7 +74,9 @@ public class EventController {
             return "redirect:/index";
         }
 
+        signupService.deleteAllSignupByEventId(id);
         eventService.deleteEventById(id);
+
         return "redirect:/index";
     }
 

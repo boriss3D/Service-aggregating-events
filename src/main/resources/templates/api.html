@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-bs-theme="auto" xmlns:th="http://www.thymeleaf.org">
+<html data-bs-theme="auto" lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:insert="~{fragments/head.html}"></div>
 <body class="d-flex flex-column min-vh-100">
 <div th:insert="~{fragments/navigation.html}"></div>
@@ -13,7 +13,7 @@
         <div class="list-group">
             <div class="card mb-3">
                 <div class="card-header">
-                    <a class="nav-link px-2" aria-current="page">Future Events</a>
+                    <a aria-current="page" class="nav-link px-2">Future Events</a>
                 </div>
                 <div class="card-body">
                     <small class="text-nowrap">Please use link below to get all future events</small><br>
@@ -22,7 +22,7 @@
             </div>
             <div class="card mb-3">
                 <div class="card-header">
-                    <a class="nav-link px-2" aria-current="page">How to make an API call with custom time range</a>
+                    <a aria-current="page" class="nav-link px-2">How to make an API call with custom time range</a>
                 </div>
                 <div class="card-body">
                     <small class="text-nowrap">Api Call:</small><br>
@@ -41,6 +41,6 @@
 
 <div th:insert="~{fragments/color-modes.html}"></div>
 <div th:insert="~{fragments/scripts.html}"></div>
-<div th:insert="~{fragments/footer.html}" class="mt-auto"></div>
+<div class="mt-auto" th:insert="~{fragments/footer.html}"></div>
 </body>
 </html>

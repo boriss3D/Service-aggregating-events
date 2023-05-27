@@ -45,6 +45,6 @@ public class Event implements Serializable {
             inverseJoinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")})
     private User user;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "event")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "event", cascade = CascadeType.ALL)
     private Set<Comment> comments;
 }

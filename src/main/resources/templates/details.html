@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-bs-theme="auto" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html data-bs-theme="auto" lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <div th:insert="~{fragments/head.html}"></div>
 <body class="d-flex flex-column min-vh-100">
 <div th:insert="~{fragments/navigation.html}"></div>
@@ -10,7 +10,7 @@
             <div class="card-header mb-2">
                 <h5 class="card-title mb-2" th:text="${eventDto.title}"></h5>
                 <div th:unless="${eventDto.imageUrl.length()} == 0">
-                    <img th:src="${eventDto.imageUrl}" src="" height="300px" alt=""/>
+                    <img alt="" height="300px" src="" th:src="${eventDto.imageUrl}"/>
                 </div>
             </div>
             <div class="card-body">
@@ -22,29 +22,33 @@
                        th:text="'Organized by ' + ${eventDto.user.getName()}"></small>
                 <div class="d-flex">
                     <div th:if="${eventDto.user.getEmail()} == ${#authentication.getName()}">
-                        <a th:href="'/event/' + ${eventDto.id} + '/edit'" type="button"
-                           class="btn btn-outline-success me-2">Update</a>
+                        <a class="btn btn-outline-success me-2" th:href="'/event/' + ${eventDto.id} + '/edit'"
+                           type="button">Update</a>
                     </div>
                     <div class="ml-2" th:if="${eventDto.user.getEmail()} == ${#authentication.getName()}">
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <button class="btn btn-outline-danger" data-bs-target="#exampleModal" data-bs-toggle="modal"
+                                type="button">
                             Delete
                         </button>
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal"
+                             tabindex="-1">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
+                                                type="button"></button>
                                     </div>
                                     <div class="modal-body">
                                         Are you sure?
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close
+                                        </button>
                                         <form method="post" th:action="'/event/' + ${eventDto.id} + '/delete'">
-                                            <button type="submit" class="btn btn-outline-danger">Delete</button>
+                                            <button class="btn btn-outline-danger" type="submit">Delete</button>
                                         </form>
                                     </div>
                                 </div>
@@ -53,12 +57,12 @@
                     </div>
                     <div class="container ml-2" sec:authorize="hasRole('USER')">
                         <form method="post" role="form" th:object="${signupDto}">
-                            <button th:unless="true == ${isJoined}" type="submit"
-                                    class="btn btn-outline-success float-end"
-                                    name="signup">Sign up
+                            <button class="btn btn-outline-success float-end" name="signup"
+                                    th:unless="true == ${isJoined}"
+                                    type="submit">Sign up
                             </button>
                         </form>
-                        <button th:if="true == ${isJoined}" class="btn btn-outline-success float-end" disabled>Already
+                        <button class="btn btn-outline-success float-end" disabled th:if="true == ${isJoined}">Already
                             joined
                         </button>
                     </div>
@@ -81,12 +85,12 @@
         <div class="col-6">
             <form method="post" role="form">
                 <div class="mb-3">
-                    <label for="commentContent" class="form-label"></label>
+                    <label class="form-label" for="commentContent"></label>
                     <textarea class="form-control" id="commentContent" rows="3"
                               th:field="${commentDto.commentContent}"></textarea>
                     <p class="text-danger" th:errors="${commentDto.commentContent}"></p>
                 </div>
-                <button type="submit" class="btn btn-outline-success float-end" name="comment">Add Comment</button>
+                <button class="btn btn-outline-success float-end" name="comment" type="submit">Add Comment</button>
             </form>
         </div>
         <div class="col"></div>
@@ -109,6 +113,6 @@
 
 <div th:insert="~{fragments/color-modes.html}"></div>
 <div th:insert="~{fragments/scripts.html}"></div>
-<div th:insert="~{fragments/footer.html}" class="mt-auto"></div>
+<div class="mt-auto" th:insert="~{fragments/footer.html}"></div>
 </body>
 </html>
