@@ -63,7 +63,7 @@ Events should is sorted in chronological order.
 
 The form containing at the top of the home page:
 a text field for entering the phrase,
-an dropdown field: future, ongoing and future, and all, the "search" button.
+a dropdown field: future, ongoing and future, and all, the "search" button.
 The entered phrase will be searched in the title.
 Search results will be placed on a separate page, in the same layout as on the home page.
 The search results page will also have a search form same as on the home page. Its fields will be set according to the currently selected criteria.
@@ -88,7 +88,7 @@ A list of all currently registered users is placed next to general information a
 
 ## My Events
 
-A section for the logged in user, where he/she will see all the events, both those in which he/she participated and owned.
+A section for the logged-in user, where he/she will see all the events, both those in which he/she participated and owned.
 User can soft events by name and dates, edit, delete events and unsubscribe.
 
 
