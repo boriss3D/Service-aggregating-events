@@ -20,9 +20,9 @@ website and the login and register buttons.
 ## User Registration
 
 The registration form contains:
-a name to display - the field cannot be empty or contain all white characters, and the maximum length is 50 characters,
-a login (email) – checking for the correctness of the e-mail,
-a password window – must be at least 8 characters long, but no more than 30 (the user should confirm the entered password).
+Name to display - the field cannot be empty or contain all white characters, and the maximum length is 50 characters. 
+Login (email) – checking for the correctness of the e-mail.
+Password – must be at least 8 characters long, but no more than 30 (the user should confirm the entered password).
 
 The user with a given email can register only once. 
 The user should be associated with the roles in the system, which will include two cases: an organizer and an ordinary user. 
@@ -38,7 +38,7 @@ buttons, information such as: "Logged in as "email"" will be displayed.
 ## Adding a new event
 
 The event has the following:
-A title - the field cannot be empty or contain only white characters,
+Title - the field cannot be empty or contain only white characters,
 dates from/to - mandatory,
 a description - a minimum of 20 characters.
 Ability to upload an image to the event.
@@ -47,24 +47,23 @@ The event is associated with the user who adds it.
 ## Editing an event
 
 An additional page that will allow user to edit the created event.
-Only the owner of the website can edit the event.
+Only the owner of the event can edit it.
 The edit option will appear on the event details page and My events page.
 
 ## List of events
 
-In the central part of the webpage, a list of all current events is placed
+In the central part of the webpage, a list of all current events is placed. 
 Each element of the list contains:
-a highlighted header with the title of the event,
+Highlighted header with the title of the event,
 dates from/to the event,
 the first 50 characters of the description.
-Events should is sorted in chronological order.
+Events is sorted in chronological order.
 
 ## Event search engine
 
 The form containing at the top of the home page:
-a text field for entering the phrase,
-a dropdown field: future, ongoing and future, and all, the "search" button.
-The entered phrase will be searched in the title.
+Text field for entering the phrase, dropdown field: future, ongoing and future, and all, the "search" button.
+The entered phrase will be searched in the events titles.
 Search results will be placed on a separate page, in the same layout as on the home page.
 The search results page will also have a search form same as on the home page. Its fields will be set according to the currently selected criteria.
 
@@ -89,7 +88,7 @@ A list of all currently registered users is placed next to general information a
 ## My Events
 
 A section for the logged-in user, where he/she will see all the events, both those in which he/she participated and owned.
-User can soft events by name and dates, edit, delete events and unsubscribe.
+User can sort events by name and dates, edit, delete events and unsubscribe.
 
 
 ## API for other services - event listing
