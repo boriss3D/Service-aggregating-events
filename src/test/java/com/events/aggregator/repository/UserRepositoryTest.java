@@ -23,16 +23,13 @@ class UserRepositoryTest {
     void itShouldFindUserByEmail() {
         // given
         String email = "boriss@gmail.com";
-
         User user = new User();
         user.setName("boriss");
         user.setEmail(email);
         user.setPassword("password");
         testUserRepository.save(user);
-
         // when
         User result = testUserRepository.findUserByEmail(email);
-
         //then
         assertThat(result).isNotNull();
     }
@@ -41,10 +38,8 @@ class UserRepositoryTest {
     void itShouldNotFindUserByEmail() {
         // given
         String email = "boriss@gmail.com";
-
         // when
         User result = testUserRepository.findUserByEmail(email);
-
         //then
         assertThat(result).isNull();
     }
