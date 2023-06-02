@@ -29,10 +29,10 @@ public class Event implements Serializable {
     @Column(nullable = false, length = 5000, columnDefinition = "Text")
     private String description;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "start-date")
     private LocalDate start;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "end-date")
     private LocalDate end;
 
     @Column(name = "image-url")

@@ -27,7 +27,14 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
         Role roleUser = roleRepository.findRoleByName("ROLE_USER");
+        if (roleUser == null) {
+            roleUser = createRole("ROLE_USER");
+        }
+
         Role roleOrganizer = roleRepository.findRoleByName("ROLE_ORGANIZER");
+        if (roleOrganizer == null) {
+            roleOrganizer = createRole("ROLE_ORGANIZER");
+        }
 
         if (userDto.getRole() == null) {
             user.setRoles(List.of(roleUser));
@@ -36,6 +43,12 @@ public class UserServiceImpl implements UserService {
         }
 
         userRepository.save(user);
+    }
+
+    private Role createRole(String roleName) {
+        Role role = new Role();
+        role.setName(roleName);
+        return roleRepository.save(role);
     }
 
     @Override
