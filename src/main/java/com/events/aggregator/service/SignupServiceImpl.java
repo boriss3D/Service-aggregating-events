@@ -8,7 +8,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 
 @AllArgsConstructor
 @Service
@@ -27,9 +26,7 @@ public class SignupServiceImpl implements SignupService {
 
     @Override
     public List<Signup> findSignupsForEvent(Long eventId) {
-        return signupRepository.findAll().stream()
-                .filter(signup -> Objects.equals(signup.getEventId(), eventId))
-                .toList();
+        return signupRepository.findAllByEventId(eventId);
     }
 
     @Override

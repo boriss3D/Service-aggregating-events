@@ -17,7 +17,7 @@ into each of them. Securing access to applications and functionalities using Spr
 Bootstrap is attached to each subsequent page using Thymeleaf, in the upper section of the page, there is the name of the 
 website and the login and register buttons.
 
-## User Registration
+## User registration
 
 The registration form contains:
 Name to display - the field cannot be empty or contain all white characters, and the maximum length is 50 characters. 
@@ -31,39 +31,40 @@ prevents it from being displayed/recovered.
 
 ## User login
 
-Login form containing login(email) and password checkboxes. Logging in using Spring Security. 
+Login form containing login(email) and password. Logging in using Spring Security. 
 After the user has successfully logged in, he/she will be redirected to the home page. Here instead of the login/register
-buttons, information such as: "Logged in as "email"" will be displayed.
+buttons, information such as: "Logged in as 'user email'" will be displayed.
 
 ## Adding a new event
 
 The event has the following:
-Title - the field cannot be empty or contain only white characters,
-dates from/to - mandatory,
-a description - a minimum of 20 characters.
-Ability to upload an image to the event.
-The event is associated with the user who adds it.
+Title - the field cannot be empty or contain only white characters.
+Dates from/to - mandatory.
+Description - a minimum of 20 characters.
+Link to event's image - can be skipped.
+The event will be associated with the user who adds it.
 
-## Editing an event
+## Editing/Deleting an event
 
-An additional page that will allow user to edit the created event.
-Only the owner of the event can edit it.
-The edit option will appear on the event details page and My events page.
+An additional page that will allow to edit/delete the created event.
+Only the owner of the event can edit or delete it.
+These options will appear on the event's details page and My events page.
 
 ## List of events
 
 In the central part of the webpage, a list of all current events is placed. 
 Each element of the list contains:
-Highlighted header with the title of the event,
-dates from/to the event,
-the first 50 characters of the description.
-Events is sorted in chronological order.
+Highlighted header with the title of the event.
+Dates from/to the event.
+The first 50 characters of the description.
+
+Events are sorted in chronological order.
 
 ## Event search engine
 
 The form containing at the top of the home page:
 Text field for entering the phrase, dropdown field: future, ongoing and future, and all, the "search" button.
-The entered phrase will be searched in the events titles.
+The entered phrase will be searched in the stored events titles.
 Search results will be placed on a separate page, in the same layout as on the home page.
 The search results page will also have a search form same as on the home page. Its fields will be set according to the currently selected criteria.
 
@@ -74,9 +75,9 @@ The title is linked on the home and the search results page. When clicked, it is
 
 ## Adding comments to the event
 
+Only logged-in users can add a comment.
 A form for adding a comment is placed under the general information about the event.
 A comment can be up to 500 characters long.
-Only logged-in users can add a comment.
 The code with the form displays all comments added so far, in descending order.
 
 ## Signing up for an event
@@ -90,8 +91,7 @@ A list of all currently registered users is placed next to general information a
 A section for the logged-in user, where he/she will see all the events, both those in which he/she participated and owned.
 User can sort events by name and dates, edit, delete events and unsubscribe.
 
-
 ## API for other services - event listing
 
 The API follows REST rules.
-The user is able to download a list of all future events, or the user can additionally filter the events based on a date range.
+The user is able to download a list of all future events, or can additionally filter the events based on a date range.
