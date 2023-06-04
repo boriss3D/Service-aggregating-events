@@ -27,8 +27,10 @@ public class MyEventsController {
 
     public String showMyEvents(Model model) {
 
-        List<EventDto> myEvents = eventService.findAllMyEvents();
-        List<EventDto> mySigns = eventService.findAllMyRegisteredEvents();
+        User user = userRepository.findUserByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+
+        List<EventDto> myEvents = eventService.findAllMyEvents(user);
+        List<EventDto> mySigns = eventService.findAllMyRegisteredEvents(user);
 
         model.addAttribute("myEvents", myEvents);
         model.addAttribute("mySigns", mySigns);

@@ -28,7 +28,7 @@ class SignupServiceImplTest {
     void setUp() {
         testSignupService = new SignupServiceImpl(signupRepository);
         User user = new User();
-        Authentication auth = new UsernamePasswordAuthenticationToken(user,null);
+        Authentication auth = new UsernamePasswordAuthenticationToken(user, null);
         SecurityContextHolder.getContext().setAuthentication(auth);
     }
 

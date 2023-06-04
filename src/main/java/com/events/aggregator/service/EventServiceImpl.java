@@ -53,12 +53,12 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<EventDto> findCurrentEventsByDateRange(LocalDate start, LocalDate end) {
+    public List<EventDto> findCurrentEventsByDateRange(LocalDate currentDate) {
         List<Event> events = eventRepository.findAll();
         return events.stream()
                 .map(this::mapToEventDto)
-                .filter(eventDto -> eventDto.getStart().isBefore(start) || eventDto.getStart().isEqual(start))
-                .filter(eventDto -> eventDto.getEnd().isAfter(end) || eventDto.getEnd().isEqual(end))
+                .filter(eventDto -> eventDto.getStart().isBefore(currentDate) || eventDto.getStart().isEqual(currentDate))
+                .filter(eventDto -> eventDto.getEnd().isAfter(currentDate) || eventDto.getEnd().isEqual(currentDate))
                 .sorted(Comparator.comparing(EventDto::getStart))
                 .toList();
     }
@@ -88,7 +88,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<EventDto> findAllFutureEvents() {
+    public List<EventDto> findAllFutureEvents(LocalDate currentDate) {
         List<Event> events = eventRepository.findAll();
         return events.stream()
                 .map(this::mapToEventDto)
@@ -110,8 +110,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<EventDto> findAllMyEvents() {
-        User user = userRepository.findUserByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+    public List<EventDto> findAllMyEvents(User user) {
         List<Event> events = eventRepository.findAll();
         return events.stream()
                 .map(this::mapToEventDto)
@@ -120,8 +119,8 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<EventDto> findAllMyRegisteredEvents() {
-        User user = userRepository.findUserByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+    public List<EventDto> findAllMyRegisteredEvents(User user) {
+
         List<Signup> signups = signupRepository.findAll();
         List<Long> eventsId = signups.stream()
                 .filter(signup -> signup.getUserEmail().equals(user.getEmail()))
@@ -131,7 +130,7 @@ public class EventServiceImpl implements EventService {
         List<Event> events = new ArrayList<>();
 
         for (Long id : eventsId) {
-            events.add(eventRepository.findEventById(id));
+            events.addAll(eventRepository.findAllById(id));
         }
 
         return events.stream()

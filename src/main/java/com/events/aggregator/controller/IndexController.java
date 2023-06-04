@@ -17,7 +17,7 @@ public class IndexController {
 
     @GetMapping({"/", "/index"})
     public String getHomePage(Model model) {
-        model.addAttribute("eventsDto", eventService.findCurrentEventsByDateRange(LocalDate.now(), LocalDate.now()));
+        model.addAttribute("eventsDto", eventService.findCurrentEventsByDateRange(LocalDate.now()));
         model.addAttribute("search", new SearchDto());
         return "index";
     }
