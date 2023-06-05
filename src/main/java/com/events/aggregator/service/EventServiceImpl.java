@@ -92,8 +92,8 @@ public class EventServiceImpl implements EventService {
         List<Event> events = eventRepository.findAll();
         return events.stream()
                 .map(this::mapToEventDto)
-                .filter(eventDto -> eventDto.getStart().isAfter(LocalDate.now()))
-                .filter(eventDto -> eventDto.getEnd().isAfter(LocalDate.now()))
+                .filter(eventDto -> eventDto.getStart().isAfter(currentDate))
+                .filter(eventDto -> eventDto.getEnd().isAfter(currentDate))
                 .sorted(Comparator.comparing(EventDto::getStart))
                 .toList();
     }
