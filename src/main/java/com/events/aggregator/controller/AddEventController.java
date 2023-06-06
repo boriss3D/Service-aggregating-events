@@ -38,7 +38,7 @@ public class AddEventController {
                     "Event is already registered under this title");
         }
 
-        if (eventDto.getStart().isAfter(eventDto.getEnd())) {
+        if (result.getErrorCount() == 0 && eventDto.getStart().isAfter(eventDto.getEnd())) {
             result.rejectValue("start", "bad date",
                     "Start date is after the end date");
         }

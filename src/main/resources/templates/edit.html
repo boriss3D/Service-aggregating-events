@@ -36,14 +36,14 @@
                     </div>
                     <div class="mt-2">
                         <label class="form-label" for="start">Start</label>
-                        <input class="form-control" id="start" name="start" required th:value="${eventDto.start}"
+                        <input class="form-control" id="start" name="start" th:value="${eventDto.start}"
                                type="date">
                         <p class="text-danger" th:errors="${eventDto.start}"
                            th:if="${#fields.hasErrors('eventDto.start')}"></p>
                     </div>
                     <div class="mt-2">
                         <label class="form-label" for="end">End</label>
-                        <input class="form-control" id="end" name="end" required th:value="${eventDto.end}"
+                        <input class="form-control" id="end" name="end" th:value="${eventDto.end}"
                                type="date">
                     </div>
                     <div class="mt-2">
