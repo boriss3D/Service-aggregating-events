@@ -53,7 +53,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<EventDto> findCurrentEventsByDateRange(LocalDate currentDate) {
+    public List<EventDto> findCurrentEvents(LocalDate currentDate) {
         List<Event> events = eventRepository.findAll();
         return events.stream()
                 .map(this::mapToEventDto)

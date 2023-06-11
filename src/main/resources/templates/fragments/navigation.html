@@ -11,7 +11,8 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary" xmlns:sec="http://www.w3.org/1999/xhtml">
     <div class="container-fluid">
         <a class="navbar-brand" th:href="@{/index}">Event Aggregator</a>
-        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler"
                 data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -28,7 +29,8 @@
             <div class="ms-auto">
                 <div class="navbar-nav" sec:authorize="hasRole('USER')">
                     <form method="post" th:action="@{/logout}">
-                        <button class="btn btn-outline-success" th:text="'Logged in as: ' + ${#authentication.getName()}"
+                        <button class="btn btn-outline-success"
+                                th:text="'Logged in as: ' + ${#authentication.getName()}"
                                 type="submit"></button>
                     </form>
                 </div>

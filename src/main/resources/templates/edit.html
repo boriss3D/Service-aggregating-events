@@ -28,7 +28,8 @@
                     </div>
                     <div class="mt-2">
                         <label class="form-label" for="description">Description</label>
-                        <textarea class="form-control" id="description" name="description" placeholder="Enter description"
+                        <textarea class="form-control" id="description" name="description"
+                                  placeholder="Enter description"
                                   rows="7" style="height:100%"
                                   th:text="${eventDto.description}"/>
                         <p class="text-danger" th:errors="${eventDto.description}"

@@ -113,7 +113,7 @@ class EventServiceImplTest {
 
         given(eventRepository.findAll()).willReturn(events);
         // when
-        List<EventDto> currentEventsByDateRange = testEventService.findCurrentEventsByDateRange(currentDate);
+        List<EventDto> currentEventsByDateRange = testEventService.findCurrentEvents(currentDate);
         //then
         verify(eventRepository).findAll();
         assertThat(currentEventsByDateRange.size()).isEqualTo(2);

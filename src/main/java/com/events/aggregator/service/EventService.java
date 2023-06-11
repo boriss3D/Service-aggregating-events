@@ -14,7 +14,7 @@ public interface EventService {
 
     EventDto findEventById(Long id);
 
-    List<EventDto> findCurrentEventsByDateRange(LocalDate currentDate);
+    List<EventDto> findCurrentEvents(LocalDate currentDate);
 
     List<EventDto> findEventsByTitle(String keyword);
 
