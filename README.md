@@ -1,8 +1,3 @@
-
-Demo site - [LINK](http://185.167.96.37:8080/index)
-
-Demo users: boriss/pass1234 (Organizer), jane/pass1234 (regular user)
-
 # The main system functions
 
 Events are created and edited by organizers (users with special roles).
